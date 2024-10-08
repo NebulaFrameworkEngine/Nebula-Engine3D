@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "App", "App\App.vcxproj", "{C6C542EB-4DBC-41DE-8404-729F3059B6AB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D7049725-0ACE-423A-A428-194C1D05EA97} = {D7049725-0ACE-423A-A428-194C1D05EA97}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Nebula", "Nebula\Nebula.vcxproj", "{D7049725-0ACE-423A-A428-194C1D05EA97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6C542EB-4DBC-41DE-8404-729F3059B6AB}.Debug|x64.ActiveCfg = Debug|x64
+		{C6C542EB-4DBC-41DE-8404-729F3059B6AB}.Debug|x64.Build.0 = Debug|x64
+		{C6C542EB-4DBC-41DE-8404-729F3059B6AB}.Release|x64.ActiveCfg = Release|x64
+		{C6C542EB-4DBC-41DE-8404-729F3059B6AB}.Release|x64.Build.0 = Release|x64
+		{D7049725-0ACE-423A-A428-194C1D05EA97}.Debug|x64.ActiveCfg = Debug|x64
+		{D7049725-0ACE-423A-A428-194C1D05EA97}.Debug|x64.Build.0 = Debug|x64
+		{D7049725-0ACE-423A-A428-194C1D05EA97}.Release|x64.ActiveCfg = Release|x64
+		{D7049725-0ACE-423A-A428-194C1D05EA97}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D1E4A59-579C-45CC-9339-EE31B96B96A0}
+	EndGlobalSection
+EndGlobal
