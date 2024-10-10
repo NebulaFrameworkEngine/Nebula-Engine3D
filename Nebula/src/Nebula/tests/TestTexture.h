@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Test.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 #include "Shader.h"
 #include "VertexArray.h"
@@ -16,7 +18,7 @@
 namespace test {
 	class TestTexture : public Test {
 	public:
-		TestTexture();
+		TestTexture(GLFWwindow* window);
 		~TestTexture();
 
 		void OnUpdate(float deltaTime) override;
@@ -32,7 +34,9 @@ namespace test {
 		std::unique_ptr<Texture> m_TextureB;
 
 		glm::vec3 m_TranslationA, m_TranslationB;
-		glm::mat4 m_Proj, m_View;
+		glm::mat4 m_Proj, m_View, m_Model;
+
+		GLFWwindow* m_Window;
 
 		bool m_VSync;
 

@@ -22,7 +22,6 @@
     <ClInclude Include="src\Nebula\tests\TestClearColor.h" />
     <ClInclude Include="src\Nebula\tests\TestTexture.h" />
     <ClInclude Include="src\Nebula\Texture.h" />
-    <ClInclude Include="src\Nebula\Utility.h" />
     <ClInclude Include="src\Nebula\vendor\glm\common.hpp" />
     <ClInclude Include="src\Nebula\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="src\Nebula\vendor\glm\detail\compute_vector_decl.hpp" />
@@ -335,7 +334,6 @@
     <ClCompile Include="src\Nebula\tests\TestClearColor.cpp" />
     <ClCompile Include="src\Nebula\tests\TestTexture.cpp" />
     <ClCompile Include="src\Nebula\Texture.cpp" />
-    <ClCompile Include="src\Nebula\Utility.cpp" />
     <ClCompile Include="src\Nebula\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="src\Nebula\vendor\imgui\imgui.cpp" />
     <ClCompile Include="src\Nebula\vendor\imgui\imgui_demo.cpp" />

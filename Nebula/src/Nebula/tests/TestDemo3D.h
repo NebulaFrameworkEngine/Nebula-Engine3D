@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Test.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 #include "Shader.h"
 #include "VertexArray.h"
@@ -17,7 +19,7 @@ namespace test
 {
 	class TestDemo3D : public Test {
 	public:
-		TestDemo3D();
+		TestDemo3D(GLFWwindow* window);
 		~TestDemo3D();
 
 		void OnUpdate(float deltaTime) override;
@@ -36,8 +38,8 @@ namespace test
 		glm::vec3 m_Transposition;
 		glm::mat4 m_Proj, m_View, m_Model;
 
+		GLFWwindow* m_Window;
 
-		bool m_VSync;
-
+		float m_FOV;
 	};
 }

@@ -5,20 +5,7 @@
 
 #include <iostream>
 
-#include "Utility.h"
 #include "Renderer.h"
-
-#include "VertexBuffer.h"
-#include "VertexBufferLayout.h"
-#include "IndexBuffer.h"
-#include "VertexArray.h"
-#include "Shader.h"
-#include "Texture.h"
-
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
-#include "vendor/stb_image/stb_image.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
@@ -45,7 +32,10 @@ namespace Nebula {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		window = glfwCreateWindow(700, 700, "Nebula", NULL, NULL);
+		int windowWidth = 700;
+		int windowHeight = 700;
+
+		window = glfwCreateWindow(windowWidth, windowHeight, "Nebula", NULL, NULL);
 		if (!window) {
 			std::cout << "[-] There was an error while creating the window\n";
 			glfwTerminate();
@@ -75,19 +65,25 @@ namespace Nebula {
 			test::TestMenu* testMenu = new test::TestMenu(currentTest);
 			currentTest = testMenu;
 
-			testMenu->RegisterTest<test::TestClearColor>("Clear Color");
-			testMenu->RegisterTest<test::TestTexture>("Texture Test");
-			testMenu->RegisterTest<test::TestDemo3D>("3D Demo");
+			testMenu->RegisterTest<test::TestClearColor>("Clear Color", window);
+			testMenu->RegisterTest<test::TestTexture>("Texture Test", window);
+			testMenu->RegisterTest<test::TestDemo3D>("3D Demo", window);
 
 			ImGuiIO& io = ImGui::GetIO(); (void)io;
 
+			bool VSync = false;
+
 			while (!glfwWindowShouldClose(window)) {
 				
-				int width, height;
-				glfwGetFramebufferSize(window, &width, &height); // Get the window size
-				glViewport(0, 0, width, height);  // Set the viewport
-				
 				renderer.ClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+				GLCall(glfwSwapInterval((int)VSync));
+
+				/*
+				int width, height;
+				glfwGetFramebufferSize(window, &width, &height);
+				GLCall(glViewport(0, 0, width, height));
+				*/
 
 				ImGui_ImplOpenGL3_NewFrame();
 				ImGui_ImplGlfw_NewFrame();
@@ -107,6 +103,7 @@ namespace Nebula {
 				}
 
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+				ImGui::Checkbox("Enable V-Sync", &VSync);
 
 				ImGui::End();
 

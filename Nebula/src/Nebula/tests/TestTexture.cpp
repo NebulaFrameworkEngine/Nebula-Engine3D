@@ -8,18 +8,19 @@
 
 namespace test {
 
-	TestTexture::TestTexture()
-		: m_Proj(glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f)),
+	TestTexture::TestTexture(GLFWwindow* window)
+		: m_Proj(glm::ortho(0.0f, 1.0f, 0.0f, 1.0f, -1.0f, 1.0f)),
 		m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
-		m_TranslationA(200, 200, 0), m_TranslationB(400, 400, 0),
-		m_VSync(false)	{
+		m_Model(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
+		m_TranslationA(0.2f, 0.37f, 0), m_TranslationB(0.42f, 0.74f, 0),
+		m_Window(window) {
 
-		// Define a square's vertices with positions and texture coordinates
 		float positions[] = {
-			-50.0f, -50.0f, 0.0f, 0.0f, // 0
-			 50.0f, -50.0f, 1.0f, 0.0f, // 1
-			 50.0f,  50.0f, 1.0f, 1.0f, // 2
-			-50.0f,  50.0f, 0.0f, 1.0f  // 3
+		//    Positions    / Texture Coordinates //
+			-0.05f, -0.05f,    0.0f, 0.0f,
+			 0.05f, -0.05f,    1.0f, 0.0f,
+			 0.05f,  0.05f,    1.0f, 1.0f,
+			-0.05f,  0.05f,    0.0f, 1.0f
 		};
 
 		unsigned int indices[] = {
@@ -43,11 +44,9 @@ namespace test {
 		m_TextureA = std::make_unique<Texture>("res/textures/cat.png");
 		m_TextureB = std::make_unique<Texture>("res/textures/dog.png");
 
-		// Set the texture slots
 		m_TextureA->Bind(0);
 		m_TextureB->Bind(1);
 
-		// Set the uniform for texture slots
 		m_Shader->SetUniform1i("u_Texture", 0);
 
 		m_VA->Unbind();
@@ -61,39 +60,45 @@ namespace test {
 	void TestTexture::OnUpdate(float deltaTime) {}
 
 	void TestTexture::OnRender() {
-		
-		glfwSwapInterval(m_VSync); // Enable vsync
+
+		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
+		int width, height;
+		glfwGetFramebufferSize(m_Window, &width, &height);
+		GLCall(glViewport(0, 0, width, height));
+
+		float ratio = (float)width / height;
 
 		Renderer renderer;
 
 		m_Shader->Bind();
 
-		// Render first texture
 		m_TextureA->Bind(0);
 		m_Shader->SetUniform1i("u_Texture", 0);
 		{
-			glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
-			glm::mat4 mvp = m_Proj * m_View * model;
-			m_Shader->SetUniformMat4f("u_MVP", mvp);
+			glm::mat4 m_Model = glm::translate(glm::mat4(1.0f), m_TranslationA);
+			m_Model = glm::scale(m_Model, glm::vec3(1.0f / ratio, 1.0f, 1.0f));
+			m_Shader->SetUniformMat4f("u_Model", m_Model);
+			m_Shader->SetUniformMat4f("u_View", m_View);
+			m_Shader->SetUniformMat4f("u_Proj", m_Proj);
 			renderer.Draw(*m_VA, *m_IB, *m_Shader);
 		}
 
-		// Render second texture
 		m_TextureB->Bind(1);
 		m_Shader->SetUniform1i("u_Texture", 1);
 		{
-			glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationB);
-			glm::mat4 mvp = m_Proj * m_View * model;
-			m_Shader->SetUniformMat4f("u_MVP", mvp);
+			glm::mat4 m_Model = glm::translate(glm::mat4(1.0f), m_TranslationB);
+			m_Model = glm::scale(m_Model, glm::vec3(1.0f / ratio, 1.0f, 1.0f));
+			m_Shader->SetUniformMat4f("u_Model", m_Model);
+			m_Shader->SetUniformMat4f("u_View", m_View);
+			m_Shader->SetUniformMat4f("u_Proj", m_Proj);
 			renderer.Draw(*m_VA, *m_IB, *m_Shader);
 		}
 	}
 
 	void TestTexture::OnImGuiRender() {
-		ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, 960.0f);
-		ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0.0f, 960.0f);
-
-		ImGui::Checkbox("V-Sync", &m_VSync);
+		ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, 1.0f);
+		ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0.0f, 1.0f);
 	}
 
 }
