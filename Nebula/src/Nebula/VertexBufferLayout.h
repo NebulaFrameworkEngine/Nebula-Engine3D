@@ -2,7 +2,7 @@
 
 #include "Renderer.h"
 #include <vector>
-#include <GL/glew.h>
+#include <glad/glad.h>
 
 struct VertexBufferElement {
 	unsigned int type;

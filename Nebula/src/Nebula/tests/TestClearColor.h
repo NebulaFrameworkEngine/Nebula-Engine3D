@@ -2,10 +2,10 @@
 
 #include "Test.h"
 
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 
 namespace test {
 	class TestClearColor : public Test {
@@ -20,6 +20,8 @@ namespace test {
 		float m_ClearColor[4];
 
 		glm::mat4 m_Proj, m_View, m_Model;
+
+		int m_WindowWidth, m_WindowHeight;
 
 		GLFWwindow* m_Window;
 	};

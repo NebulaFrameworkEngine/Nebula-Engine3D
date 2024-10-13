@@ -1,10 +1,18 @@
 #include "TestDemo3D.h"
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "Renderer.h"
-#include "imgui/imgui.h"
-#include "glm/gtc/matrix_transform.hpp"
+
+#include "Shader.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
+#include "VertexBufferLayout.h"
+#include "IndexBuffer.h"
+#include "Texture.h"
+
+#include <imgui/imgui.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace test
 {
@@ -17,6 +25,7 @@ namespace test
 		m_Rotation(0.0f),
 		m_Transposition(0.0f, 0.0f, 0.0f),
 		m_Window(window),
+		m_WindowWidth(0), m_WindowHeight(0),
 		m_FOV(45.0f) {
 
 		float vertecies[] = {
@@ -70,12 +79,9 @@ namespace test
 
 		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-		int width, height;
+		glfwGetFramebufferSize(m_Window, &m_WindowWidth, &m_WindowHeight);
 
-		glfwGetFramebufferSize(m_Window, &width, &height);
-		GLCall(glViewport(0, 0, width, height));
-
-		float ratio = (float)width/height;
+		float ratio = (float)m_WindowWidth / m_WindowHeight;
 
 		m_Proj = glm::perspective(glm::radians(m_FOV), ratio, 0.1f, 100.0f);
 

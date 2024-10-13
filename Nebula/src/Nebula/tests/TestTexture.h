@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Test.h"
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "Shader.h"
@@ -11,7 +11,7 @@
 #include "IndexBuffer.h"
 #include "Texture.h"
 
-#include "glm/glm.hpp"
+#include <glm/glm.hpp>
 
 #include <memory>
 
@@ -37,6 +37,8 @@ namespace test {
 		glm::mat4 m_Proj, m_View, m_Model;
 
 		GLFWwindow* m_Window;
+
+		int m_WindowHeight, m_WindowWidth;
 
 		bool m_VSync;
 

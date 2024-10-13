@@ -1,10 +1,10 @@
 #include "TestTexture.h"
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 #include "Renderer.h"
 
-#include "imgui/imgui.h"
-#include "glm/gtc/matrix_transform.hpp"
+#include <imgui/imgui.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace test {
 
@@ -13,7 +13,8 @@ namespace test {
 		m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
 		m_Model(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
 		m_TranslationA(0.2f, 0.37f, 0), m_TranslationB(0.42f, 0.74f, 0),
-		m_Window(window) {
+		m_Window(window),
+		m_WindowWidth(0), m_WindowHeight(0)	{
 
 		float positions[] = {
 		//    Positions    / Texture Coordinates //
@@ -61,15 +62,14 @@ namespace test {
 
 	void TestTexture::OnRender() {
 
-		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-
-		int width, height;
-		glfwGetFramebufferSize(m_Window, &width, &height);
-		GLCall(glViewport(0, 0, width, height));
-
-		float ratio = (float)width / height;
-
 		Renderer renderer;
+		
+		renderer.Clear();
+
+		glfwGetFramebufferSize(m_Window, &m_WindowWidth, &m_WindowHeight);
+
+		float ratio = (float)m_WindowWidth / m_WindowHeight;
+
 
 		m_Shader->Bind();
 
