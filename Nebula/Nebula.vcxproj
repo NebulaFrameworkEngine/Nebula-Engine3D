@@ -55,22 +55,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\Nebula\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\Nebula\</IntDir>
+    <OutDir>..\bin\Debug-windows-x86_64\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\Debug\Nebula\</IntDir>
     <TargetName>Nebula</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\Nebula\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\Nebula\</IntDir>
+    <OutDir>..\bin\Release-windows-x86_64\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\Release\Nebula\</IntDir>
     <TargetName>Nebula</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Dist-windows-x86_64\Nebula\</OutDir>
-    <IntDir>..\bin-int\Dist-windows-x86_64\Nebula\</IntDir>
+    <OutDir>..\bin\Dist-windows-x86_64\</OutDir>
+    <IntDir>..\bin-int\Dist-windows-x86_64\Dist\Nebula\</IntDir>
     <TargetName>Nebula</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
@@ -92,7 +92,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\Nebula\Nebula.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Debug-windows-x86_64\Nebula.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -116,7 +116,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Release-windows-x86_64\Nebula\Nebula.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Release-windows-x86_64\Nebula.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -140,7 +140,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\Nebula\Nebula.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Dist-windows-x86_64\Nebula.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -602,6 +602,9 @@
     <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="premake5.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

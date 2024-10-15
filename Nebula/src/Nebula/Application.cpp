@@ -56,7 +56,7 @@ namespace Nebula {
 		glfwMakeContextCurrent(window);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-			std::cout << "Failed to initialize GLAD" << std::endl;
+			std::cout << "[-] There was an error while initializing GLAD\n";
 			return -1;
 		}
 		

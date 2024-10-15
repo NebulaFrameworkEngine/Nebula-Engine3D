@@ -55,22 +55,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\App\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\App\</IntDir>
+    <OutDir>..\bin\Debug-windows-x86_64\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\Debug\App\</IntDir>
     <TargetName>App</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\App\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\App\</IntDir>
+    <OutDir>..\bin\Release-windows-x86_64\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\Release\App\</IntDir>
     <TargetName>App</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Dist-windows-x86_64\App\</OutDir>
-    <IntDir>..\bin-int\Dist-windows-x86_64\App\</IntDir>
+    <OutDir>..\bin\Dist-windows-x86_64\</OutDir>
+    <IntDir>..\bin-int\Dist-windows-x86_64\Dist\App\</IntDir>
     <TargetName>App</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
@@ -144,6 +144,9 @@
     <ProjectReference Include="..\Nebula\Nebula.vcxproj">
       <Project>{DCCD2CC5-C86F-579B-B12A-6BEF9D6BDEEB}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="premake5.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
